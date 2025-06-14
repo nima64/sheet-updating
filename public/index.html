@@ -58,20 +58,19 @@
   <script>
     // Example data grid
     const data = [
-      { make: "Apple", model: "iPhone 13", config: "128GB, Blue", price: "$600", qty: 5 },
-      { make: "Samsung", model: "Galaxy S21", config: "256GB, Black", price: "$550", qty: 3 },
-      { make: "Google", model: "Pixel 6", config: "128GB, White", price: "$500", qty: 4 },
+      { make: "Bixolon", model: "Srp-F310II", config: "SRP-F310IICOSK", price: "", qty: "" },
+      { make: "Brady", model: "BMP51", config: "139814", price: "", qty: "" },
     ];
 
     const grid = document.getElementById('product-grid');
 
     data.forEach(row => {
       grid.insertAdjacentHTML('beforeend', `
-        <div class="grid-cell"><input class="grid-input" type="text" value="${row.make}"></div>
-        <div class="grid-cell"><input class="grid-input" type="text" value="${row.model}"></div>
-        <div class="grid-cell"><input class="grid-input" type="text" value="${row.config}"></div>
+        <div class="grid-cell">${row.make}</div>
+        <div class="grid-cell">${row.model}</div>
+        <div class="grid-cell">${row.config}</div>
         <div class="grid-cell"><input class="grid-input" type="text" value="${row.price}"></div>
-        <div class="grid-cell"><input class="grid-input" type="number" min="0" value="${row.qty}"></div>
+        <div class="grid-cell"><input class="grid-input" type="text" value="${row.qty}"></div>
       `);
     });
 
