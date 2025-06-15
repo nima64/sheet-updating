@@ -1,10 +1,14 @@
 import { Request, Response } from 'express';
-import { mockSheet, RowData } from '../app'; // 👈 importing from app.ts
+import { templateSheet, sellerSheet,  RowData } from '../app'; // 👈 importing from app.ts
 
 // Get
-export const getSheet = (_req: Request, res: Response) => {
-    res.json({ sheet: mockSheet });
+export const getSheet = (req: Request, res: Response) => {
+    const user = req.query.user; 
+    if(user === 'seller') 
+        return res.json({ sheet: sellerSheet });
+    res.json({ sheet: templateSheet });
   };
+
 // Post
 export const batchUpdateSheet = (req: Request, res: Response) => {
   const { op, data } = req.body;
@@ -14,7 +18,7 @@ export const batchUpdateSheet = (req: Request, res: Response) => {
   }
 
   data.updates.forEach(({ rowId, col, value }: { rowId: string; col: keyof RowData; value: string }) => {
-    const row = mockSheet.find(r => r.rowId === rowId); // ← 👈 this line
+    const row = templateSheet.find(r => r.rowId === rowId); // ← 👈 this line
 
     if (row && (col === 'price' || col === 'qty')) {
       row[col] = value;
@@ -22,5 +26,5 @@ export const batchUpdateSheet = (req: Request, res: Response) => {
     }
   });
 
-  res.json({ success: true, updated: data.updates.length, sheet: mockSheet });
+  res.json({ success: true, updated: data.updates.length, sheet: templateSheet });
 };

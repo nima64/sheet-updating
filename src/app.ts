@@ -13,7 +13,7 @@ export type RowData = {
   qty: string;
 };
 
-export const mockSheet: RowData[] = [
+export const templateSheet: RowData[] = [
   {
     rowId: 'r0',
     make: 'Bixolon',
@@ -71,6 +71,17 @@ export const mockSheet: RowData[] = [
     qty: ''
   }
 ];
+
+ export const sellerSheet: RowData[] = [...templateSheet,  
+  {
+    rowId: 'r7',
+    make: 'seller sheet',
+    model: '',
+    config: '',
+    price: '',
+    qty: ''
+  }];
+//  export sellerSheet;
 
 
 const app = express();
