@@ -66,13 +66,6 @@ export const templateSheet: RowData[] = [
   }
 ];
 
- export const sellerSheet: RowData[] = [...templateSheet,  
-  {
-    rowId: 'r7',
-    make: 'seller sheet',
-    model: '',
-    config: '',
-    price: '',
-    qty: ''
-  }];
+ export const sellerSheet1: RowData[] = structuredClone(templateSheet);
+ export const sellerSheet2: RowData[] = structuredClone(templateSheet);
 //  export sellerSheet;

@@ -18,8 +18,11 @@ app.use('/api/sheet', sheetRouter); // <-- mount your API route
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
-app.get('/seller', (_req, res) => {
-  res.sendFile(path.join(__dirname, '../public/seller.html'));
+app.get('/seller1', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../public/seller1.html'));
+});
+app.get('/seller2', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../public/seller2.html'));
 });
 app.get('/buyer', (_req, res) => {
   res.sendFile(path.join(__dirname, '../public/buyer.html'));

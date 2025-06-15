@@ -43,8 +43,9 @@ function updateGrid(sheet) {
 const dirtyCells = new Map();
 // let sheetData = {};
 
+const queries = 'user=seller1';
 
-fetch('/api/sheet?user=seller')
+fetch(`/api/sheet?${queries}`)
     .then(res => res.json())
     .then(({ sheet }) => {
         // let rowIndex = 0;
@@ -61,7 +62,7 @@ setInterval(() => {
     const updates = Array.from(dirtyCells.values());
     console.log('Sending batch update:', updates);
 
-    fetch('/api/sheet/batch-update', {
+    fetch(`/api/sheet/batch-update?${queries}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
