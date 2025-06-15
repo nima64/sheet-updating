@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { templateSheet, sellerSheet,  RowData } from '../app'; // 👈 importing from app.ts
+import { templateSheet, sellerSheet,  RowData } from '../data'; // 👈 importing from app.ts
 
 // Get
 export const getSheet = (req: Request, res: Response) => {
