@@ -29,6 +29,46 @@ export const mockSheet: RowData[] = [
     config: '139814',
     price: '',
     qty: ''
+  },
+  {
+    rowId: 'r2',
+    make: '',
+    model: '',
+    config: '',
+    price: '',
+    qty: ''
+  },
+  {
+    rowId: 'r3',
+    make: '',
+    model: '',
+    config: '',
+    price: '',
+    qty: ''
+  },
+  {
+    rowId: 'r4',
+    make: '',
+    model: '',
+    config: '',
+    price: '',
+    qty: ''
+  },
+  {
+    rowId: 'r5',
+    make: '',
+    model: '',
+    config: '',
+    price: '',
+    qty: ''
+  },
+  {
+    rowId: 'r6',
+    make: '',
+    model: '',
+    config: '',
+    price: '',
+    qty: ''
   }
 ];
 
@@ -48,6 +88,13 @@ app.use('/api/sheet', sheetRouter); // <-- mount your API route
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+app.get('/seller', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../public/seller.html'));
+});
+app.get('/buyer', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../public/buyer.html'));
+});
+
 
 
 

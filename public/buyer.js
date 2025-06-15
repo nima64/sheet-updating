@@ -12,13 +12,21 @@ function updateGrid(sheet) {
         });
     };
 
+    // create from sheet
     sheet.forEach(row => {
         const rowId = row.rowId;
 
         gridContainer.insertAdjacentHTML('beforeend', `
-            <div class="grid-cell">${row.make}</div>
-            <div class="grid-cell">${row.model}</div>
-            <div class="grid-cell">${row.config}</div>
+            <div class="grid-cell">
+              <input class="grid-input" type="text" data-row-id="${rowId}" data-col="price" value="${row.make}">
+            </div>
+            <div class="grid-cell">
+              <input class="grid-input" type="text" data-row-id="${rowId}" data-col="price" value="${row.model}">
+            </div>
+            <div class="grid-cell">
+              <input class="grid-input" type="text" data-row-id="${rowId}" data-col="price" value="${row.config}">
+            </div>
+
             <div class="grid-cell">
               <input class="grid-input" type="text" data-row-id="${rowId}" data-col="price" value="${row.price}">
             </div>
@@ -28,6 +36,7 @@ function updateGrid(sheet) {
             `);
     });
 
+    // Add event listeners to inputs
     gridContainer.querySelectorAll('.grid-input').forEach(input => {
         input.addEventListener('keyup', e => {
             const target = e.target;

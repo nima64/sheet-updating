@@ -4,124 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello World Page</title>
-  <style>
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1px;
-      background: #333;
-      margin-top: 2rem;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    .grid-header,
-    .grid-cell {
-      background: #fff;
-      padding: 12px 8px;
-      font-size: 1rem;
-      border: 1px solid #333;
-      box-sizing: border-box;
-    }
-
-    .grid-header {
-      background: #f0f0f0;
-      font-weight: bold;
-      text-align: left;
-    }
-
-    .grid-header.price {
-      white-space: pre-line;
-    }
-
-    .grid-input {
-      width: 100%;
-      padding: 6px;
-      font-size: 1rem;
-      box-sizing: border-box;
-      border: 1px solid #aaa;
-      border-radius: 3px;
-    }
-  </style>
+  <style></style>
 </head>
 
 <body>
-  <div class="grid-container" id="product-grid">
-    <div class="grid-header">Make</div>
-    <div class="grid-header">Model</div>
-    <div class="grid-header">Specific Configuration</div>
-    <div class="grid-header price">Price Quote<br>at least 9/10 without <br>retail box</div>
-    <div class="grid-header">qty</div>
-    <!-- Input rows will be generated here -->
-  </div>
-
-  <script>
-    const grid = document.getElementById('product-grid');
-    const dirtyCells = new Map();
-  
-    // 1. Load data from backend
-    fetch('/api/sheet')
-      .then(res => res.json())
-      .then(({ sheet }) => {
-        let rowIndex = 0;
-  
-        sheet.forEach(row => {
-          const rowId = row.rowId;
-  
-          grid.insertAdjacentHTML('beforeend', `
-            <div class="grid-cell">${row.make}</div>
-            <div class="grid-cell">${row.model}</div>
-            <div class="grid-cell">${row.config}</div>
-            <div class="grid-cell">
-              <input class="grid-input" type="text" data-row-id="${rowId}" data-col="price" value="${row.price}">
-            </div>
-            <div class="grid-cell">
-              <input class="grid-input" type="text" data-row-id="${rowId}" data-col="qty" value="${row.qty}">
-            </div>
-          `);
-          rowIndex++;
-        });
-  
-        // 2. After inserting, attach blur listeners to inputs
-        document.querySelectorAll('.grid-input').forEach(input => {
-          input.addEventListener('keyup', e => {
-            const target = e.target;
-            const rowId = target.dataset.rowId;
-            const col = target.dataset.col;
-            const value = target.value.trim();
-            dirtyCells.set(`${rowId}|${col}`, { rowId, col, value });
-            console.log(`Edited ${rowId} / ${col} = ${value}`);
-          });
-        });
-      });
-  
-    // 3. Every 5 seconds, send batched changes to backend
-    setInterval(() => {
-      if (dirtyCells.size === 0) return;
-  
-      const updates = Array.from(dirtyCells.values());
-      console.log('Sending batch update:', updates);
-  
-      fetch('/api/sheet/batch-update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          op: 'batch_update',
-          data: { updates }
-        })
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log('Update success:', data);
-          dirtyCells.clear();
-        })
-        .catch(err => {
-          console.error('Update failed:', err);
-        });
-    }, 5000);
-  </script>
-  
-  
+    <div>
+        <h1>Hello World</h1>
+        <p>This is a simple HTML page.</p>
+        <p>It contains a heading and a paragraph.</p>
+        <p>Feel free to modify it!</p>
+    </div>
 </body>
 
 </html>
