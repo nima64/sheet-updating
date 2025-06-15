@@ -49,6 +49,7 @@ fetch(`/api/sheet?${queries}`)
     .then(res => res.json())
     .then(({ sheet }) => {
         // let rowIndex = 0;
+        console.log('Initial sheet data:', sheet);
         updateGrid(sheet);
     });
 

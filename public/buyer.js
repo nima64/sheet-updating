@@ -28,10 +28,10 @@ function updateGrid(sheet) {
             </div>
 
             <div class="grid-cell">
-              <input class="grid-input" type="text" data-row-id="${rowId}" data-col="price" value="${row.price}">
+              <textarea class="grid-input" type="text" data-row-id="${rowId}" data-col="price">${row.price}</textarea>
             </div>
             <div class="grid-cell">
-              <input class="grid-input" type="text" data-row-id="${rowId}" data-col="qty" value="${row.qty}">
+              <textarea class="grid-input" type="text" data-row-id="${rowId}" data-col="qty">${row.qty}</textarea>
             </div>
             `);
     });
@@ -57,32 +57,8 @@ fetch('/api/sheet?user=buyer')
     .then(res => res.json())
     .then(({ sheet }) => {
         // let rowIndex = 0;
+        console.log('Initial sheet data:', sheet);
         updateGrid(sheet);
     });
 
 
-
-// 3. Every 5 seconds, send batched changes to backend
-setInterval(() => {
-    if (dirtyCells.size === 0) return;
-
-    const updates = Array.from(dirtyCells.values());
-    console.log('Sending batch update:', updates);
-
-    fetch('/api/sheet/batch-update?user=buyer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            op: 'batch_update',
-            data: { updates }
-        })
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log('Update success:', data);
-            dirtyCells.clear();
-        })
-        .catch(err => {
-            console.error('Update failed:', err);
-        });
-}, 5000);
